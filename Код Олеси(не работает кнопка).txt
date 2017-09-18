@@ -1,0 +1,125 @@
+#include <DHT.h>
+#include <SPI.h>
+#include <Ethernet.h>
+
+#define temLowTrigger 60
+#define humLowTrigger 30
+#define DHTPIN 2     // вывод, к которому подключается датчик
+#define DHTTYPE DHT22   // DHT 22  (AM2302)
+
+byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02 };
+EthernetClient client;
+
+DHT dht(DHTPIN, DHTTYPE);
+int relay = 7;
+int button = 3;
+
+long previousMillis = 0; //интервалы для засечения времени для подключения в серверу
+unsigned long currentMillis = 0;
+long interval = 3000; //интервал обновления 
+unsigned long msTime;
+unsigned long  Timenow;
+unsigned long  currentTime;
+byte mode = 0;
+int t =0;
+int h =0;
+
+String data0;
+String data1;
+
+void setup() { 
+  Serial.begin(9600);
+  if (Ethernet.begin(mac) == 0) {
+    Serial.println("Failed to configure Ethernet using DHCP"); 
+  } //не удалось настроить интернет с использованием DHCP
+  dht.begin();
+  pinMode(relay, OUTPUT); 
+  pinMode(button, INPUT);
+}
+
+void loop() {
+    delay(2000);//время считывания датчика
+      currentMillis = millis();
+  if(currentMillis - previousMillis > interval) { // READ ONLY ONCE PER INTERVAL
+    previousMillis = currentMillis;
+       h = (int) dht.readHumidity();
+       t = (int) dht.readTemperature();
+       unsigned long timeNow;
+}
+
+    data0 = t ;
+    data1 = h;
+    if (client.connect("www.antiice.somee.com",80)) { // заменить с адресом своего сервера
+    client.println("GET /addStr?Str=устройство HTTP/1.1"); 
+    client.println("Host: www.antiice.somee.com"); // Здесь адрес сервера 
+    client.println("Content-Type: application/x-www-form-urlencoded"); 
+    client.print("Content-Length: "); 
+    //client.println(data0.length()); 
+    //client.println(); 
+    //client.print(data0); 
+    //client.println(); 
+    //client.println(data1.length()); 
+    //client.println(); 
+   // client.print(data1);
+
+    if ( t<= -39){
+    client.println(" The sensor does not show reliable information");
+    digitalWrite(relay, LOW);
+unsigned long  TimeNow = 0;
+unsigned long  msTime = 0;
+    };   
+
+if((h > humLowTrigger)&& (5<t < temLowTrigger)) {
+               //timeNow=millis();
+              digitalWrite(relay, HIGH);
+              if (mode ==0) {
+                mode=1;
+              }
+              else {
+                mode = 0;}
+                 if (mode == 0) {
+                   Timenow = millis();}
+                 else
+                 {
+                 currentTime = millis();
+                 msTime += currentTime-Timenow;
+                 // if (msTime > 5000) { //сейчас тут 5 секунд, а надо 10 часов
+                 // digitalWrite(relay, LOW);
+                  //client.println(" The system does not cope with the work");
+                  while (msTime > 10000){
+                  digitalWrite(relay, LOW);
+                  client.println(" The system does not cope with the work");
+                  if(digitalRead(button)==HIGH) {
+                   //digitalWrite(relay, HIGH);
+                      msTime=0;
+                   }
+                     // msTime=0; 
+                     }
+                       }
+                             }
+                   //if(digitalRead(button)==HIGH) {
+                  // digitalWrite(relay, HIGH);
+                   // msTime=0;
+                   //}
+                   //}
+                 // }
+
+if ((h <= humLowTrigger)&& (-39 <t < temLowTrigger)){
+digitalWrite(relay, LOW);
+unsigned long TimeNow = 0;
+unsigned long  msTime = 0;
+}
+if ((h > humLowTrigger)&& (t > temLowTrigger))
+{
+  digitalWrite(relay, LOW);
+    unsigned long TimeNow = 0;
+    unsigned long  msTime = 0;
+}
+
+  if (client.connected()) { 
+    client.stop();  // DISCONNECT FROM THE SERVER
+  }
+delay(1);
+}
+}
+
