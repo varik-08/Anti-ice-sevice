@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AzureBD" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Device">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Temperature" Type="Double" />
+    <Property Name="Wetness" Type="Double" />
+    <Property Name="Longitude" Type="Double" Nullable="false" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="AzureModelBD" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Device" EntityType="Self.Device" />
+  </EntityContainer>
+</Schema>

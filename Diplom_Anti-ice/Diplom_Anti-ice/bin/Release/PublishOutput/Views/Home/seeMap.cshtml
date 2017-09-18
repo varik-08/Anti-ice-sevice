@@ -1,0 +1,77 @@
+﻿@model List<Device>
+
+@{
+    ViewBag.Title = "seeMap";
+    var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var DeviceInfoJson = jss.Serialize(Model);
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Карта с устройствами.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script src="http://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+
+        function init() {
+            var myMap = new ymaps.Map('map', {
+                center: [55.1540200, 61.4291500],
+                zoom: 8
+            })
+
+            var myCollection = new ymaps.GeoObjectCollection();
+            
+            var long = [];
+            var lat = [];
+            var Id = [];
+            var Temperature = [];
+            var Wetness = [];
+
+            JSON.parse('@Html.Raw(DeviceInfoJson)', function (key, value) {
+                if (key == 'Longitude') long.push(value);
+                if (key == 'Latitude') lat.push(value);
+                if (key == 'Id') Id.push(value);
+                if (key == 'Temperature') Temperature.push(value);
+                if (key == 'Wetness') Wetness.push(value);
+            });
+
+            if (long.length == lat.length)
+            {
+                for (var i = 0; i < long.length; i++){
+                    myCollection.add(new ymaps.Placemark([lat[i], long[i]],
+                        {
+                            hintContent: Id[i],
+                            balloonContent: 'Температура =' + Temperature[i] + ' ' + 'Влажность =' + Wetness[i]
+                        }));
+                    console.log(long[i]);
+                }
+            }
+
+
+          //  myCollection.add(new ymaps.Placemark([30.30, 50.27]));
+
+            // При наведении на одну из меток подсвечиваем коллекцию целиком.
+            myCollection.events
+                .add("mouseenter", function () {
+                    myCollection.options.set("preset", "twirl#redIcon");
+                })
+                .add("mouseleave", function () {
+                    myCollection.options.unset("preset");
+                });
+
+            // Добавляем коллекцию на карту.
+            myMap.geoObjects.add(myCollection);
+
+        }
+    </script>
+    
+</head>
+<body>
+    <div id="map" style="width:800px;height:600px"></div>
+
+</body>
+</html>
+

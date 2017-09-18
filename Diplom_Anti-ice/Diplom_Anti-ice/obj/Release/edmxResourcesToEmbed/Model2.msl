@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище AzureBDContainer" CdmEntityContainer="AzureModelBD">
+    <EntitySetMapping Name="Device">
+      <EntityTypeMapping TypeName="AzureBD.Device">
+        <MappingFragment StoreEntitySet="Device">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+          <ScalarProperty Name="Wetness" ColumnName="Wetness" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

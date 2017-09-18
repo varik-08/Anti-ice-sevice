@@ -1,0 +1,27 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "seeDev";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Добавление устройства</title>
+    <style>
+        body {
+            margin: 0; /* Убираем отступы */
+            height: auto; /* Высота страницы */
+            width: auto;
+            background: url(../../Image/img1.jpg);
+            background-size: cover; /* Фон занимает всю доступную площадь */
+        }
+    </style>
+</head>
+<body>
+    @foreach (var str in Model)
+    {
+        <div> @str </div>
+    }
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{6E8334B4-34C9-4EB5-BB2B-5CF5CBE6A451}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Diplom_Anti-ice/Model-Antiice.cs">
+    <Files>
+      <File FileName="Diplom_Anti-ice/Views/Home/seeMap.cshtml" Line="23" Column="24" />
+      <File FileName="Diplom_Anti-ice/Controllers/HomeController.cs" Line="40" Column="37" />
+      <File FileName="Diplom_Anti-ice/Model-Antiice.cs" Line="8" Column="51" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Diplom__Anti-ice PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
