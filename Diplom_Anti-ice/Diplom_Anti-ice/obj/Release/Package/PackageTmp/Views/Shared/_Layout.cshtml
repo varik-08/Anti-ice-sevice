@@ -4,36 +4,35 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="~/Images/icon2.bmp">
-   
-    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/mystyleLayout.css" rel="stylesheet" type="text/css" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
 </head>
 <body>
-    <div class="header">
-        <div class="mid">
-            <header>
-                <div class="topmenu">
-                    <aside>
-                        <a href="/Home/Index">Главная</a>
-                        <a href="/Home/seeMap">Карта</a>
-                        <a href="#">Устройства</a>
-                        <a href="#">Контакты и связь</a>
-                    </aside>
-                </div>
-                <img src="~/Images/logo2.png" alt="Logo" title="logo">
-            </header>
+    <nav class="navbar navbar-default">
+        <div class=" container">
+            <div class="navbar-header">
+                <img class="img-rounded" src="~/Images/logo2.png" alt="Logo" title="logo">
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"> <a href="~/Home/Index">Главная</a></li>
+                    <li> <a href="/Home/seeMap">Карта</a></li>
+                    <li> <a href="#">О нас</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="menu">
-        <div class="mid"></div>
-    </div>
-    <div class="container body-content">
+    </nav>
+    <div class="container-fluid">
         <div class="mid">@RenderBody()</div>
-        
-    </div>
-    <div class="footer">
-        <div class="mid"></div>
+
     </div>
 </body>
 </html>

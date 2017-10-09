@@ -1,42 +1,7 @@
 ﻿body {
-    /* Путь к изображению относительно данного файла */
-    background-image: url(../../Images/img6.jpg);
-    /* Центрирование изображения по вертикали и горизонтали всегда */
-    background-position: center center;
-    /* Запрещаем повтор изображения */
-    background-repeat: no-repeat;
-    /* Фиксируем изображение - оно остается на месте при прокрутке окна */
-    background-attachment: fixed;
-    /* Изображение будет масштабироваться в зависимости от размеров контейнера */
+    background: url(../../Images/img7.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    /* Цвет фона изображения, который будет показываться пока изображение не загрузится */
-    background-color: #464646;
-    margin:0;
-    padding:0;
-    font: 16px/24px Arial,Tahoma,sans-serif;
-}
-a {
-    text-decoration:none;
-}
-/*Структура сайта*/
-div.header {
-    background: #ffffff;
-}
-div.mid {
-    width: 1000px;
-    margin: 0 auto;
-}
-
-/*Шапка сайта*/
-div.topmenu{
-    float:right; 
-    height:45px; 
-    line-height:45px;
-}
-div.topmenu a {
-    margin: 0 0 0 10px;
-    color:#0094ff;
-}
-div.topmenu a:hover{
-    color:#000000;
 }
